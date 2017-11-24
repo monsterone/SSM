@@ -34,4 +34,26 @@ public class StudentServerImpl implements StudentServer {
 		return new PageInfo<>(studentModelMapper.selectByExample(example));
 	}
 
+	@Override
+	public StudentModel getStudent(StudentModel studentModel) {
+		return studentModelMapper.selectByPrimaryKey(studentModel.getStudentno());
+	}
+
+	@Override
+	public int save(StudentModel studentModel) {
+		return studentModelMapper.insert(studentModel);
+	}
+
+	@Override
+	public int edit(StudentModel studentModel) {
+		StudentModelCriteria example=new StudentModelCriteria();
+		example.createCriteria().andStudentnoEqualTo(studentModel.getStudentno());
+		return studentModelMapper.updateByExampleSelective(studentModel, example);
+	}
+
+	@Override
+	public int remove(StudentModel studentModel) {
+		return studentModelMapper.deleteByPrimaryKey(studentModel.getStudentno());
+	}
+
 }

@@ -20,10 +20,8 @@
 					<th>姓名</th>
 					<th>性别</th>
 					<th>手机</th>
-					<th>地址</th>
 					<th>生日</th>
 					<th>邮箱</th>
-					<th>身份证</th>
 					<th>操作</th>
 				</tr>
 			</thead>
@@ -37,16 +35,14 @@
 							<c:if test="${!obj.sex}">女</c:if>
 						</td>
 						<td>${obj.phone} </td>
-						<td>${obj.address} </td>
 						<td>
 							<fmt:formatDate value="${obj.borndate}" pattern="yyyy-MM-dd"/>
 						</td>
 						<td>${obj.email} </td>
-						<td>${obj.identitycard} </td>
 						<td>
-							<a class="btn btn-sm btn-info" href="#">info</a>
-							<a class="btn btn-sm btn-warning" href="#">edit</a>
-							<a class="btn btn-sm btn-danger" href="#">remove</a>
+							<a class="btn btn-sm btn-info" href="to_info?studentno=${obj.studentno}">info</a>
+							<a class="btn btn-sm btn-warning" href="to_edit?studentno=${obj.studentno}">edit</a>
+							<a class="btn btn-sm btn-danger" href="do_remove?studentno=${obj.studentno}">remove</a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -54,21 +50,21 @@
 		</table>        
 		<ul class="pagination">
 			<li class="page-item">
-				<a class="page-link" href="list?pageNum=1">首页</a>
+				<a class="page-link" href="to_list?pageNum=1">首页</a>
 			</li>
 			<li class="page-item">
-				<a class="page-link" href="list?pageNum=${pageinfo.prePage }">上一页</a>
+				<a class="page-link" href="to_list?pageNum=${pageinfo.prePage }">上一页</a>
 			</li>
 			<c:forEach items="${pageinfo.navigatepageNums }" var="page">
 				<li class="page-item <c:if test="${pageinfo.pageNum==page }">active</c:if>">
-					<a class="page-link" href="list?pageNum=${page }">${page }</a>
+					<a class="page-link" href="to_list?pageNum=${page }">${page }</a>
 				</li>
 			</c:forEach>
 			<li class="page-item">
-				<a class="page-link" href="list?pageNum=${pageinfo.nextPage }">下一页</a>
+				<a class="page-link" href="to_list?pageNum=${pageinfo.nextPage }">下一页</a>
 			</li>
 			<li class="page-item">
-				<a class="page-link" href="list?pageNum=${pageinfo.pages }">末页</a>
+				<a class="page-link" href="to_list?pageNum=${pageinfo.pages }">末页</a>
 			</li>
 		</ul>
 	</div>
